@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#160611">
+  <title>Una rosa para mi princesa ❤️</title>
+  <style>
+    :root {
+      --bg: #160611;
+      --pink: #ff6fae;
+      --light-pink: #ffd4e6;
+      --text: #fff4f8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(125, 19, 75, .38), transparent 55%),
+        radial-gradient(ellipse at 15% 85%, rgba(255, 48, 128, .12), transparent 40%),
+        var(--bg);
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+
+    .stars, .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff0f7;
+      border-radius: 50%;
+      opacity: .6;
+      box-shadow: 0 0 10px #ff9ac8;
+      animation: twinkle 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle { from { opacity: .18; transform: scale(.7); } to { opacity: .9; transform: scale(1.4); } }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(920px, 100%);
+      margin: 0 auto;
+      padding: 42px 18px 32px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font: 700 .72rem/1.5 Arial, sans-serif;
+    }
+
+    h1 {
+      margin: 10px 0 8px;
+      font-size: clamp(2.25rem, 8vw, 4.6rem);
+      line-height: 1.05;
+      color: var(--light-pink);
+      text-shadow: 0 0 24px rgba(255, 91, 164, .35);
+    }
+
+    .subtitle {
+      max-width: 570px;
+      margin: 0 auto;
+      color: #e9bdcf;
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+      line-height: 1.7;
+    }
+
+    .flower-stage {
+      position: relative;
+      width: min(390px, 94vw);
+      height: 360px;
+      margin: 8px auto 0;
+      filter: drop-shadow(0 0 20px rgba(255, 65, 147, .14));
+    }
+
+    .flower-svg { width: 100%; height: 100%; overflow: visible; }
+
+    .stem {
+      fill: none;
+      stroke: url(#stemGradient);
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-dasharray: 250;
+      stroke-dashoffset: 250;
+      animation: grow-stem 2s .25s ease forwards;
+    }
+
+    .leaf {
+      fill: url(#leafGradient);
+      stroke: #79d99a;
+      stroke-width: 1.3;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: leaf-open 1s 1.3s ease-out both;
+    }
+
+    .rose-petal {
+      stroke: #ff9fc5;
+      stroke-width: 1.25;
+      stroke-linejoin: round;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: petal-open .95s cubic-bezier(.2,.75,.25,1) forwards;
+      filter: drop-shadow(0 1px 2px rgba(109, 0, 47, .16));
+    }
+
+    .petal-base       { animation-delay: .72s; }
+    .petal-back-left  { animation-delay: .8s; }
+    .petal-back-right { animation-delay: .95s; }
+    .petal-back-top   { animation-delay: 1.08s; }
+    .petal-side-left  { animation-delay: 1.2s; }
+    .petal-side-right { animation-delay: 1.32s; }
+    .petal-front-left { animation-delay: 1.44s; }
+    .petal-front-right{ animation-delay: 1.56s; }
+    .petal-front      { animation-delay: 1.68s; }
+    .petal-inner-left { animation-delay: 1.82s; }
+    .petal-inner-right{ animation-delay: 1.94s; }
+    .petal-center     { animation-delay: 2.06s; }
+
+    .petal-vein {
+      fill: none;
+      stroke: rgba(255, 211, 229, .72);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      opacity: 0;
+      animation: vein-appear .7s 2.25s ease forwards;
+    }
+
+    .rose-spiral {
+      fill: none;
+      stroke: #ffb7d2;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0;
+      stroke-dasharray: 90;
+      stroke-dashoffset: 90;
+      animation: draw-spiral 1.1s 2.15s ease forwards;
+    }
+
+    @keyframes grow-stem { to { stroke-dashoffset: 0; } }
+    @keyframes leaf-open {
+      from { opacity: 0; transform: scale(.15) rotate(-16deg); }
+      to { opacity: 1; transform: scale(1) rotate(0); }
+    }
+    @keyframes petal-open {
+      from { opacity: 0; transform: scale(.42) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes vein-appear { to { opacity: 1; } }
+    @keyframes draw-spiral { to { opacity: 1; stroke-dashoffset: 0; } }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 4px auto 26px;
+    }
+
+    button {
+      border: 1px solid rgba(255, 183, 215, .55);
+      border-radius: 999px;
+      padding: 12px 19px;
+      color: #fff5fa;
+      background: rgba(255, 83, 153, .13);
+      font: 700 .94rem Arial, sans-serif;
+      cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button:hover, button:focus-visible {
+      background: rgba(255, 83, 153, .28);
+      box-shadow: 0 0 22px rgba(255, 83, 153, .18);
+      transform: translateY(-2px);
+      outline: none;
+    }
+    button:active { transform: scale(.98); }
+    .primary {
+      color: #421329;
+      background: linear-gradient(135deg, #ffd3e5, #ff78b3);
+      border: none;
+    }
+    .primary:hover, .primary:focus-visible { background: linear-gradient(135deg, #ffe5ef, #ff91c1); }
+
+    .letter {
+      max-width: 640px;
+      margin: 0 auto 26px;
+      padding: 0 18px;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(12px);
+      transition: max-height .8s ease, opacity .5s ease, transform .5s ease, padding .5s ease;
+      border: 1px solid transparent;
+      border-radius: 22px;
+      background: rgba(65, 16, 42, .5);
+      text-align: left;
+    }
+    .letter.open {
+      max-height: 650px;
+      opacity: 1;
+      transform: translateY(0);
+      padding: 24px clamp(18px, 5vw, 34px);
+      border-color: rgba(255, 163, 203, .28);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .16);
+    }
+    .letter h2 {
+      margin: 0 0 14px;
+      color: #ffb4d4;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+    .letter p { color: #f8dce8; line-height: 1.85; font-size: 1.08rem; }
+    .signature { color: var(--light-pink) !important; text-align: right; font-style: italic; }
+
+    .footer {
+      color: #c99caf;
+      font: .82rem/1.7 Arial, sans-serif;
+      padding: 4px 10px 16px;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -35px;
+      color: #ff6fae;
+      font-size: 18px;
+      opacity: .85;
+      animation: float-up linear forwards;
+      text-shadow: 0 0 12px rgba(255, 80, 150, .6);
+    }
+    @keyframes float-up {
+      from { transform: translateY(0) rotate(0deg) scale(.8); opacity: 0; }
+      12% { opacity: .85; }
+      to { transform: translateY(-110vh) rotate(35deg) scale(1.35); opacity: 0; }
+    }
+
+
+    @media (max-width: 480px) {
+      .page { padding-top: 32px; }
+      .flower-stage { height: 315px; }
+      .letter.open { padding: 21px 18px; }
+      .letter p { font-size: 1rem; }
+      .actions { gap: 9px; }
+      button { padding: 11px 15px; font-size: .88rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="eyebrow">Hecho con amor, solo para ti</div>
+    <h1>Para mi princesa <span aria-hidden="true">♡</span></h1>
+    <p class="subtitle">Hay personas que hacen más bonito el mundo con tan solo existir.<br>Para mí, tú eres una de ellas.</p>
+
+    <div class="flower-stage" aria-label="Una rosa roja y rosa que florece lentamente">
+      <svg class="flower-svg" viewBox="0 0 360 350" role="img" aria-labelledby="flowerTitle">
+        <title id="flowerTitle">Una rosa para mi princesa</title>
+        <defs>
+          <linearGradient id="stemGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#246b43"/>
+            <stop offset="55%" stop-color="#42a963"/>
+            <stop offset="100%" stop-color="#83dfa0"/>
+          </linearGradient>
+          <linearGradient id="leafGradient" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#17633c"/>
+            <stop offset="100%" stop-color="#60c77f"/>
+          </linearGradient>
+          <linearGradient id="outerPetal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffb7d3"/>
+            <stop offset="48%" stop-color="#f65396"/>
+            <stop offset="100%" stop-color="#a90d4d"/>
+          </linearGradient>
+          <linearGradient id="sidePetal" x1="0" y1="0" x2=".8" y2="1">
+            <stop offset="0%" stop-color="#ff9ec5"/>
+            <stop offset="55%" stop-color="#ec347e"/>
+            <stop offset="100%" stop-color="#bd155b"/>
+          </linearGradient>
+          <linearGradient id="innerPetal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffd4e5"/>
+            <stop offset="36%" stop-color="#ff79ad"/>
+            <stop offset="100%" stop-color="#d51b69"/>
+          </linearGradient>
+          <linearGradient id="centerPetal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffb5d2"/>
+            <stop offset="100%" stop-color="#c9165e"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Tallo y hojas -->
+        <path class="stem" fill="none" stroke="url(#stemGradient)" stroke-width="7" stroke-linecap="round" d="M180 169 C176 218 190 266 180 324"/>
+        <path class="leaf" fill="url(#leafGradient)" stroke="#79d99a" stroke-width="1.3" d="M181 263 C147 258 119 235 112 208 C145 208 173 226 181 263 Z"/>
+        <path d="M178 259 C157 244 137 226 119 214" fill="none" stroke="#8ce3a6" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
+        <path class="leaf" fill="url(#leafGradient)" stroke="#79d99a" stroke-width="1.3" d="M182 291 C217 282 241 258 245 232 C213 235 190 254 182 291 Z" style="animation-delay:1.55s"/>
+        <path d="M187 282 C205 265 224 249 238 238" fill="none" stroke="#8ce3a6" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
+
+        <!-- Sépalos verdes bajo la rosa -->
+        <g>
+          <path d="M180 174 C158 166 145 151 143 133 C160 139 173 148 180 159 C187 146 202 137 220 134 C216 154 201 168 180 174 Z" fill="#287e49" stroke="#65c58a" stroke-width="1.4"/>
+          <path d="M179 168 C164 151 157 139 153 124 C168 132 177 145 181 158 C190 143 200 133 211 127 C207 144 198 159 179 168 Z" fill="#3da35e" stroke="#79d99a" stroke-width="1.1"/>
+        </g>
+
+        <!-- Base continua para que la rosa tenga una silueta llena -->
+        <path class="rose-petal petal-base" fill="url(#outerPetal)" d="M180 169 C142 176 108 150 108 116 C108 83 132 57 157 62 C169 37 194 37 206 62 C231 57 254 83 254 116 C254 150 218 176 180 169 Z"/>
+
+        <!-- Pétalos exteriores: silueta amplia de rosa -->
+        <g>
+          <path class="rose-petal petal-back-left" fill="url(#outerPetal)" d="M178 157 C151 169 112 151 109 119 C106 91 124 64 148 67 C166 69 174 91 168 111 C185 119 190 139 178 157 Z"/>
+          <path class="rose-petal petal-back-right" fill="url(#outerPetal)" d="M181 157 C208 169 247 151 250 119 C253 91 235 64 211 67 C193 69 185 91 191 111 C174 119 169 139 181 157 Z"/>
+          <path class="rose-petal petal-back-top" fill="url(#sidePetal)" d="M141 115 C125 91 139 57 162 48 C181 41 194 58 187 78 C181 96 164 108 141 115 Z"/>
+          <path class="rose-petal petal-back-top" fill="url(#sidePetal)" d="M219 115 C235 91 221 57 198 48 C179 41 166 58 173 78 C179 96 196 108 219 115 Z" style="animation-delay:1.02s"/>
+        </g>
+
+        <!-- Capas centrales con curvas como pétalos naturales -->
+        <g>
+          <path class="rose-petal petal-side-left" fill="url(#sidePetal)" d="M177 161 C151 158 126 137 128 113 C130 92 148 83 163 97 C176 109 171 126 164 137 C179 142 187 151 177 161 Z"/>
+          <path class="rose-petal petal-side-right" fill="url(#sidePetal)" d="M183 161 C209 158 234 137 232 113 C230 92 212 83 197 97 C184 109 189 126 196 137 C181 142 173 151 183 161 Z"/>
+          <path class="rose-petal petal-front-left" fill="url(#outerPetal)" d="M178 164 C150 159 132 143 139 122 C144 106 160 105 172 119 C183 133 181 149 178 164 Z"/>
+          <path class="rose-petal petal-front-right" fill="url(#outerPetal)" d="M182 164 C210 159 228 143 221 122 C216 106 200 105 188 119 C177 133 179 149 182 164 Z"/>
+          <path class="rose-petal petal-front" fill="url(#innerPetal)" d="M145 143 C132 122 147 96 164 102 C178 107 177 126 169 137 C184 127 204 127 210 143 C217 163 198 174 180 170 C161 176 145 164 145 143 Z"/>
+          <path class="rose-petal petal-inner-left" fill="url(#centerPetal)" d="M154 135 C150 116 165 105 177 117 C185 125 178 139 170 145 C166 154 174 160 184 155 C196 149 193 135 186 130 C200 130 207 145 197 157 C185 172 159 160 154 145 Z"/>
+          <path class="rose-petal petal-inner-right" fill="url(#innerPetal)" d="M183 122 C197 111 210 122 205 136 C201 147 190 151 181 146 C190 143 194 135 188 130 C182 126 177 131 177 137 C170 132 175 125 183 122 Z"/>
+          <path class="rose-petal petal-center" fill="url(#centerPetal)" d="M177 125 C186 116 199 125 197 137 C195 145 185 151 177 147 C167 142 168 132 177 125 Z"/>
+        </g>
+
+        <!-- Finos pliegues que dan volumen a los pétalos -->
+        <path class="petal-vein" fill="none" stroke="rgba(255,211,229,.72)" stroke-width="1.5" stroke-linecap="round" d="M128 91 C143 103 151 119 155 135"/>
+        <path class="petal-vein" fill="none" stroke="rgba(255,211,229,.72)" stroke-width="1.5" stroke-linecap="round" d="M232 91 C217 103 209 119 205 135" style="animation-delay:2.35s"/>
+        <path class="petal-vein" fill="none" stroke="rgba(255,211,229,.72)" stroke-width="1.5" stroke-linecap="round" d="M151 75 C165 83 172 94 174 107" style="animation-delay:2.4s"/>
+        <path class="petal-vein" fill="none" stroke="rgba(255,211,229,.72)" stroke-width="1.5" stroke-linecap="round" d="M209 75 C195 83 188 94 186 107" style="animation-delay:2.45s"/>
+        <path class="rose-spiral" fill="none" stroke="#ffb7d2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M177 130 C183 123 192 128 190 135 C188 141 180 142 177 137 C175 134 179 131 182 134"/>
+      </svg>
+    </div>
+    <div class="actions">
+      <button class="primary" id="letterButton" aria-expanded="false" aria-controls="letter">💌 Abrir mi cartita</button>
+      <button id="heartButton">♡ Enviarte amor</button>
+    </div>
+    <section class="letter" id="letter" aria-hidden="true">
+      <h2>Mi princesa 💗</h2>
+      <p>Quiero que sepas algo que a veces las palabras no alcanzan a explicar: <strong>te amo y quiero recordarte lo especial que eres para mí.</strong></p>
+      <p>Hice esta pequeña página pensando en ti, para sacarte una sonrisa y recordarte que tienes un lugar muy bonito en mi corazón. Ojalá, cada vez que la abras, sientas un poquito de todo el cariño que quiero darte.</p>
+      <p>No necesitas hacer nada especial para ser importante para mí. Tu forma de ser, tus detalles y la alegría que traes a mis días ya hacen que seas alguien única.</p>
+      <p>Si algún día tienes uno de esos días difíciles, vuelve aquí y recuerda que mereces cariño, paciencia, respeto y muchas razones para sonreír.</p>
+      <p class="signature">Con todo mi amor, para ti. ♡</p>
+    </section>
+
+    <div class="footer">Una pequeña sorpresa para alguien inmensamente especial. <span aria-hidden="true">♡</span></div>
+  </main>
+
+  <script>
+    const stars = document.getElementById("stars");
+    const floatingHearts = document.getElementById("floatingHearts");
+    const letter = document.getElementById("letter");
+    const letterButton = document.getElementById("letterButton");
+    const heartButton = document.getElementById("heartButton");
+
+    // Estrellitas colocadas al azar.
+    for (let i = 0; i < 65; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 3 + "s";
+      star.style.animationDuration = (1.5 + Math.random() * 3) + "s";
+      stars.appendChild(star);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("span");
+      heart.className = "heart";
+      heart.textContent = ["♡", "♥", "❤", "💗"][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.fontSize = (14 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      floatingHearts.appendChild(heart);
+      heart.addEventListener("animationend", () => heart.remove());
+    }
+
+    // Algunos corazones aparecen de vez en cuando.
+    setInterval(createHeart, 850);
+
+    letterButton.addEventListener("click", () => {
+      const isOpen = letter.classList.toggle("open");
+      letterButton.setAttribute("aria-expanded", String(isOpen));
+      letter.setAttribute("aria-hidden", String(!isOpen));
+      letterButton.textContent = isOpen ? "💌 Cerrar mi cartita" : "💌 Abrir mi cartita";
+      if (isOpen) letter.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    heartButton.addEventListener("click", () => {
+      for (let i = 0; i < 18; i++) {
+        setTimeout(createHeart, i * 90);
+      }
+      heartButton.textContent = "♡ ¡Mucho amor para ti!";
+      setTimeout(() => heartButton.textContent = "♡ Enviarte amor", 2200);
+    });
+
+  </script>
+</body>
+</html>
