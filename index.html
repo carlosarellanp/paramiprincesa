@@ -110,7 +110,7 @@
     }
 
     .rose-petal {
-      stroke: #ff9fc5;
+      stroke: #ff7777;
       stroke-width: 1.25;
       stroke-linejoin: round;
       opacity: 0;
@@ -135,7 +135,7 @@
 
     .petal-vein {
       fill: none;
-      stroke: rgba(255, 211, 229, .72);
+      stroke: rgba(255, 120, 120, .8);
       stroke-width: 1.5;
       stroke-linecap: round;
       opacity: 0;
@@ -144,7 +144,7 @@
 
     .rose-spiral {
       fill: none;
-      stroke: #ffb7d2;
+      stroke: #ff7777;
       stroke-width: 3.2;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -272,7 +272,7 @@
   <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
 
   <main class="page">
-    <div class="eyebrow">Hecho con amor, solo para ti</div>
+    <div class="eyebrow">Hecho con amor y mucho cariño </div>
     <h1>Para mi princesa <span aria-hidden="true">♡</span></h1>
     <p class="subtitle">Hay personas que hacen más bonito el mundo con tan solo existir.<br>Para mí, tú eres una de ellas.</p>
 
@@ -290,23 +290,23 @@
             <stop offset="100%" stop-color="#60c77f"/>
           </linearGradient>
           <linearGradient id="outerPetal" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ffb7d3"/>
-            <stop offset="48%" stop-color="#f65396"/>
-            <stop offset="100%" stop-color="#a90d4d"/>
+            <stop offset="0%" stop-color="#ff9aab"/>
+            <stop offset="48%" stop-color="#e6294f"/>
+            <stop offset="100%" stop-color="#850025"/>
           </linearGradient>
           <linearGradient id="sidePetal" x1="0" y1="0" x2=".8" y2="1">
-            <stop offset="0%" stop-color="#ff9ec5"/>
-            <stop offset="55%" stop-color="#ec347e"/>
-            <stop offset="100%" stop-color="#bd155b"/>
+            <stop offset="0%" stop-color="#ff718b"/>
+            <stop offset="55%" stop-color="#d91e42"/>
+            <stop offset="100%" stop-color="#790020"/>
           </linearGradient>
           <linearGradient id="innerPetal" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ffd4e5"/>
-            <stop offset="36%" stop-color="#ff79ad"/>
-            <stop offset="100%" stop-color="#d51b69"/>
+            <stop offset="0%" stop-color="#ff6666"/>
+            <stop offset="36%" stop-color="#e6000"/>
+            <stop offset="100%" stop-color="#790000"/>
           </linearGradient>
           <linearGradient id="centerPetal" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ffb5d2"/>
-            <stop offset="100%" stop-color="#c9165e"/>
+            <stop offset="0%" stop-color="#ff7777"/>
+            <stop offset="100%" stop-color="#d90000"/>
           </linearGradient>
         </defs>
 
@@ -330,20 +330,20 @@
         <g>
           <path class="rose-petal petal-back-left" fill="url(#outerPetal)" d="M178 157 C151 169 112 151 109 119 C106 91 124 64 148 67 C166 69 174 91 168 111 C185 119 190 139 178 157 Z"/>
           <path class="rose-petal petal-back-right" fill="url(#outerPetal)" d="M181 157 C208 169 247 151 250 119 C253 91 235 64 211 67 C193 69 185 91 191 111 C174 119 169 139 181 157 Z"/>
-          <path class="rose-petal petal-back-top" fill="url(#sidePetal)" d="M141 115 C125 91 139 57 162 48 C181 41 194 58 187 78 C181 96 164 108 141 115 Z"/>
-          <path class="rose-petal petal-back-top" fill="url(#sidePetal)" d="M219 115 C235 91 221 57 198 48 C179 41 166 58 173 78 C179 96 196 108 219 115 Z" style="animation-delay:1.02s"/>
+          <path class="rose-petal petal-back-top" fill="url(#outerPetal)" d="M141 115 C125 91 139 57 162 48 C181 41 194 58 187 78 C181 96 164 108 141 115 Z"/>
+          <path class="rose-petal petal-back-top" fill="url(#outerPetal)" d="M219 115 C235 91 221 57 198 48 C179 41 166 58 173 78 C179 96 196 108 219 115 Z" style="animation-delay:1.02s"/>
         </g>
 
         <!-- Capas centrales con curvas como pétalos naturales -->
         <g>
-          <path class="rose-petal petal-side-left" fill="url(#sidePetal)" d="M177 161 C151 158 126 137 128 113 C130 92 148 83 163 97 C176 109 171 126 164 137 C179 142 187 151 177 161 Z"/>
-          <path class="rose-petal petal-side-right" fill="url(#sidePetal)" d="M183 161 C209 158 234 137 232 113 C230 92 212 83 197 97 C184 109 189 126 196 137 C181 142 173 151 183 161 Z"/>
+          <path class="rose-petal petal-side-left" fill="url(#outerPetal)" d="M177 161 C151 158 126 137 128 113 C130 92 148 83 163 97 C176 109 171 126 164 137 C179 142 187 151 177 161 Z"/>
+          <path class="rose-petal petal-side-right" fill="url(#outerPetal)" d="M183 161 C209 158 234 137 232 113 C230 92 212 83 197 97 C184 109 189 126 196 137 C181 142 173 151 183 161 Z"/>
           <path class="rose-petal petal-front-left" fill="url(#outerPetal)" d="M178 164 C150 159 132 143 139 122 C144 106 160 105 172 119 C183 133 181 149 178 164 Z"/>
           <path class="rose-petal petal-front-right" fill="url(#outerPetal)" d="M182 164 C210 159 228 143 221 122 C216 106 200 105 188 119 C177 133 179 149 182 164 Z"/>
-          <path class="rose-petal petal-front" fill="url(#innerPetal)" d="M145 143 C132 122 147 96 164 102 C178 107 177 126 169 137 C184 127 204 127 210 143 C217 163 198 174 180 170 C161 176 145 164 145 143 Z"/>
-          <path class="rose-petal petal-inner-left" fill="url(#centerPetal)" d="M154 135 C150 116 165 105 177 117 C185 125 178 139 170 145 C166 154 174 160 184 155 C196 149 193 135 186 130 C200 130 207 145 197 157 C185 172 159 160 154 145 Z"/>
-          <path class="rose-petal petal-inner-right" fill="url(#innerPetal)" d="M183 122 C197 111 210 122 205 136 C201 147 190 151 181 146 C190 143 194 135 188 130 C182 126 177 131 177 137 C170 132 175 125 183 122 Z"/>
-          <path class="rose-petal petal-center" fill="url(#centerPetal)" d="M177 125 C186 116 199 125 197 137 C195 145 185 151 177 147 C167 142 168 132 177 125 Z"/>
+          <path class="rose-petal petal-front" fill="url(#outerPetal)" d="M145 143 C132 122 147 96 164 102 C178 107 177 126 169 137 C184 127 204 127 210 143 C217 163 198 174 180 170 C161 176 145 164 145 143 Z"/>
+          <path class="rose-petal petal-inner-left" fill="url(#outerPetal)" d="M154 135 C150 116 165 105 177 117 C185 125 178 139 170 145 C166 154 174 160 184 155 C196 149 193 135 186 130 C200 130 207 145 197 157 C185 172 159 160 154 145 Z"/>
+          <path class="rose-petal petal-inner-right" fill="url(#outerPetal)" d="M183 122 C197 111 210 122 205 136 C201 147 190 151 181 146 C190 143 194 135 188 130 C182 126 177 131 177 137 C170 132 175 125 183 122 Z"/>
+          <path class="rose-petal petal-center" fill="url(#outerPetal)" d="M177 125 C186 116 199 125 197 137 C195 145 185 151 177 147 C167 142 168 132 177 125 Z"/>
         </g>
 
         <!-- Finos pliegues que dan volumen a los pétalos -->
@@ -362,12 +362,13 @@
       <h2>Mi princesa 💗</h2>
       <p>Quiero que sepas algo que a veces las palabras no alcanzan a explicar: <strong>te amo y quiero recordarte lo especial que eres para mí.</strong></p>
       <p>Hice esta pequeña página pensando en ti, para sacarte una sonrisa y recordarte que tienes un lugar muy bonito en mi corazón. Ojalá, cada vez que la abras, sientas un poquito de todo el cariño que quiero darte.</p>
-      <p>No necesitas hacer nada especial para ser importante para mí. Tu forma de ser, tus detalles y la alegría que traes a mis días ya hacen que seas alguien única.</p>
-      <p>Si algún día tienes uno de esos días difíciles, vuelve aquí y recuerda que mereces cariño, paciencia, respeto y muchas razones para sonreír.</p>
-      <p class="signature">Con todo mi amor, para ti. ♡</p>
+      <p>No necesitas hacer nada especial para ser importante para mí. Simplemete tu forma de ser, tus detalles caricias besos y cualidades que te hacen unica y te admiro mi amor eres una mujer extraordinaria</p>
+      <p>Y nunca olvides que te amo y intento darte todo lo mejor, amo tu sonrisa, tus ojos, tus ideas, tu paciencia, tu empatia, simplemnte todo, Eres especial mi amor </p>
+      <p>Si algún día tienes uno de esos días difíciles, vuelve aquí y recuerda que mereces cariño, paciencia, respeto y muchas razones para sonreír todos los días.</p>
+      <p class="signature">Con todo mi amor, Carlos Arellano. ♡</p>
     </section>
 
-    <div class="footer">Una pequeña sorpresa para alguien inmensamente especial. <span aria-hidden="true">♡</span></div>
+    <div class="footer">Una pequeña sorpresa para mi mujer extraordinaria <span aria-hidden="true">♡</span></div>
   </main>
 
   <script>
